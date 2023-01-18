@@ -90,8 +90,40 @@ public class CellPhoneTest
         //Assert
         assertFalse(test);
     }
+    @Test
+    public void verifyRetrieveCellPhoneCallHistory()
+    {
+        //Setup
+        CallingCard card = new CallingCard(20);
+        CellPhone phone = new CellPhone(card);
+        phone.call("555-5555");
 
+        CallingCard card2 = new CallingCard(10);
+        CellPhone phone2 = new CellPhone(card2);
+        phone2.call("121-1212");
+
+        //Enact
+        String num = phone.getHistory();
+        String num2 = phone2.getHistory();
+        //Assert
+        assertEquals("555-5555", num);
+        assertEquals("121-1212", num2);
+    }
+    @Test
+    public void verifyCallDurationCanBeIncludedInCallHistory()
+    {
+        //Setup
+        CallingCard card = new CallingCard(20);
+        CellPhone phone = new CellPhone(card);
+        phone.call("555-5555");
+        phone.tick();
+        phone.endCall();
+        //Enact
+        String num = phone.getHistory();
+        //Assert
+        assertEquals("555-5555 (1 minute)", num);
+    }
 }
-//Setup
-//Enact
-//Assert
+        //Setup
+        //Enact
+        //Assert

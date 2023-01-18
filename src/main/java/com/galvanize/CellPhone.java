@@ -4,6 +4,8 @@ public class CellPhone
 {
     boolean active = false;
     CallingCard card;
+    String history;
+    int duration;
 
     public CellPhone(CallingCard card)
     {
@@ -17,6 +19,7 @@ public class CellPhone
 
     public void call(String number)
     {
+        history = number;
         active = true;
     }
 
@@ -27,10 +30,16 @@ public class CellPhone
     public void tick()
     {
         card.balance--;
+        duration++;
     }
     public void endCall()
     {
         active = false;
-    }
 
+        history += " (" + duration + " minute)";
+    }
+    public String getHistory()
+    {
+        return history;
+    }
 }
