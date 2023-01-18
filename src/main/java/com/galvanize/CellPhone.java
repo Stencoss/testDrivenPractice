@@ -19,8 +19,18 @@ public class CellPhone
 
     public void call(String number)
     {
-        history = number;
+        if (history == null)
+        {
+            history = number;
+        }
+        else
+        {
+            history += ", " + number;
+        }
+
+        duration = 0;
         active = true;
+
     }
 
     public boolean isTalking()
@@ -29,14 +39,28 @@ public class CellPhone
     }
     public void tick()
     {
-        card.balance--;
-        duration++;
+        if(card.balance <= 0)
+        {
+            endCall();
+        }
+        else
+        {
+            card.balance--;
+            duration++;
+        }
     }
+
     public void endCall()
     {
         active = false;
-
-        history += " (" + duration + " minute)";
+        if(duration > 1)
+        {
+            history += " (" + duration + " minutes)";
+        }
+        else
+        {
+            history += " (" + duration + " minute)";
+        }
     }
     public String getHistory()
     {

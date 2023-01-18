@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CellPhoneTest
-{
+public class CellPhoneTest {
     @Test
-    public void verifyCellPhoneCanTakeACallingCard()
-    {
+    public void verifyCellPhoneCanTakeACallingCard() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -23,9 +21,9 @@ public class CellPhoneTest
         assertEquals(10, test2);
 
     }
+
     @Test
-    public void verifyCellPhoneCanStartACall()
-    {
+    public void verifyCellPhoneCanStartACall() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -42,9 +40,9 @@ public class CellPhoneTest
         assertTrue(phone2.active);
 
     }
+
     @Test
-    public void verifyCanCheckThereIsAnActiveCall()
-    {
+    public void verifyCanCheckThereIsAnActiveCall() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -59,9 +57,9 @@ public class CellPhoneTest
         assertTrue(phone.isTalking());
         assertFalse(phone2.isTalking());
     }
+
     @Test
-    public void verifyMinutesCanTickFromACellPhone()
-    {
+    public void verifyMinutesCanTickFromACellPhone() {
         //Setup
         CallingCard card = new CallingCard(20);
         card.addDollars(1);
@@ -73,12 +71,12 @@ public class CellPhoneTest
         phone.tick();
         int toast = card.getRemainingMinutes();
         //Assert
-        assertEquals(4,test);
-        assertEquals(3,toast);
+        assertEquals(4, test);
+        assertEquals(3, toast);
     }
+
     @Test
-    public void verifyCellPhoneCanEndACall()
-    {
+    public void verifyCellPhoneCanEndACall() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -90,9 +88,9 @@ public class CellPhoneTest
         //Assert
         assertFalse(test);
     }
+
     @Test
-    public void verifyRetrieveCellPhoneCallHistory()
-    {
+    public void verifyRetrieveCellPhoneCallHistory() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -109,9 +107,9 @@ public class CellPhoneTest
         assertEquals("555-5555", num);
         assertEquals("121-1212", num2);
     }
+
     @Test
-    public void verifyCallDurationCanBeIncludedInCallHistory()
-    {
+    public void verifyCallDurationCanBeIncludedInCallHistory() {
         //Setup
         CallingCard card = new CallingCard(20);
         CellPhone phone = new CellPhone(card);
@@ -122,6 +120,44 @@ public class CellPhoneTest
         String num = phone.getHistory();
         //Assert
         assertEquals("555-5555 (1 minute)", num);
+    }
+
+    @Test
+    public void verifyMultipleCallsCanBeIncludedInCallHistory() {
+        //Setup
+        CallingCard card = new CallingCard(20);
+        CellPhone phone = new CellPhone(card);
+        phone.call("555-5555");
+        phone.tick();
+        phone.endCall();
+        phone.call("121-1212");
+        phone.tick();
+        phone.tick();
+        phone.endCall();
+        //Enact
+        String num = phone.getHistory();
+        //Assert
+        assertEquals("555-5555 (1 minute), 121-1212 (2 minutes)", num);
+
+    }
+
+    @Test
+    public void verifyEveryTickChecksIfThereAreRemainingMinutesOnTheCard()
+    {
+        //Setup
+        CallingCard card = new CallingCard(50);
+        CellPhone phone = new CellPhone(card);
+        phone.call("555-5555");
+        phone.tick();
+        phone.tick();
+        phone.tick();
+        //Enact
+        int numTest = card.balance;
+        boolean test = phone.isTalking();
+
+        //Assert
+        assertEquals(0,numTest);
+        assertFalse(test);
     }
 }
         //Setup
