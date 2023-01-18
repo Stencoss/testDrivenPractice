@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.galvanize.CellPhoneTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-18T17:57:11" hostname="Edgars-MacBook-Air.local" time="0.034">
+<testsuite name="com.galvanize.CellPhoneTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-01-18T20:49:21" hostname="Edgars-MacBook-Air.local" time="0.042">
   <properties/>
-  <testcase name="verifyCellPhoneCanTakeACallingCard()" classname="com.galvanize.CellPhoneTest" time="0.034"/>
+  <testcase name="verifyCellPhoneCanTakeACallingCard()" classname="com.galvanize.CellPhoneTest" time="0.026"/>
+  <testcase name="verifyCellPhoneCanStartACall()" classname="com.galvanize.CellPhoneTest" time="0.001"/>
+  <testcase name="verifyCellPhoneCanEndACall()" classname="com.galvanize.CellPhoneTest" time="0.002"/>
+  <testcase name="verifyMinutesCanTickFromACellPhone()" classname="com.galvanize.CellPhoneTest" time="0.002"/>
+  <testcase name="verifyCanCheckThereIsAnActiveCall()" classname="com.galvanize.CellPhoneTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
